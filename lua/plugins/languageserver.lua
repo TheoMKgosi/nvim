@@ -31,6 +31,9 @@ return {
       lspconfig.tailwindcss.setup {
         capabilities = capabilities
       }
+      lspconfig.pyright.setup {
+        capabilities = capabilities
+      }
 
       vim.api.nvim_create_autocmd('LspAttach', {
         callback = function(ev)
