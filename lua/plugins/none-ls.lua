@@ -5,8 +5,13 @@ return {
 
     null_ls.setup({
       sources = {
-        null_ls.builtins.formatting.stylua,
-        null_ls.builtins.formatting.prettier,
+        null_ls.builtins.formatting.stylua.with({
+          filetypes = { "lua"}
+        }),
+        null_ls.builtins.formatting.prettier.with({
+          filetypes = { "html", "json", "yaml", "markdown" },
+        }),
+        null_ls.builtins.diagnostics.eslint,
         null_ls.builtins.completion.luasnip,
 
       },
