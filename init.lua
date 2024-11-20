@@ -6,6 +6,9 @@ require("lazy-manager")
 require("keymaps")
 require("option")
 
+vim.keymap.set('n', '<leader>r', ':w<CR>', {noremap = true, silent = true})
+
+
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.numberwidth = 1
