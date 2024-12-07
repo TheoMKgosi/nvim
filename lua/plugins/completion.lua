@@ -51,9 +51,6 @@ return {
 			lspconfig.tailwindcss.setup({
 				capabilities = capabilities,
 			})
-			lspconfig.intelephense.setup({
-				capabilities = capabilities,
-			})
 			lspconfig.sqls.setup({
 				capabilities = capabilities,
 			})
@@ -96,7 +93,7 @@ return {
 
 				sources = {
 					{ name = "path" },
-					{ name = "luasnip", keyword_length = 1 },
+					{ name = "luasnip" },
 					{ name = "buffer", keyword_length = 3 },
 					{ name = "nvim_lsp", keyword_length = 2 },
 				},
