@@ -87,6 +87,7 @@ return {
 		"hrsh7th/nvim-cmp",
 		config = function()
 			local cmp = require("cmp")
+			local luasnip = require("luasnip")
 			cmp.setup({
 				snippet = {
 					expand = function(args)
@@ -96,9 +97,9 @@ return {
 
 				sources = {
 					{ name = "path" },
-					{ name = "luasnip", keyword_length = 1 },
-					{ name = "buffer", keyword_length = 3 },
-					{ name = "nvim_lsp", keyword_length = 2 },
+					{ name = "luasnip" },
+					{ name = "buffer" },
+					{ name = "nvim_lsp" },
 				},
 
 				window = {
@@ -111,6 +112,24 @@ return {
 					["<C-f>"] = cmp.mapping.scroll_docs(4),
 					["<C-Space>"] = cmp.mapping.complete(),
 					["<CR>"] = cmp.mapping.confirm({ select = true }),
+					["<C-l>"] = cmp.mapping(function(fallback)
+						if luasnip.jumpable(1) then
+							luasnip.jump(1)
+						elseif cmp.visible() then
+							cmp.select_next_item()
+						else
+							fallback()
+						end
+					end, { "i", "s" }),
+					["<C-m>"] = cmp.mapping(function(fallback)
+						if luasnip.jumpable(-1) then
+							luasnip.jump(-1)
+						elseif cmp.visible() then
+							cmp.select_prev_item()
+						else
+							fallback()
+						end
+					end, { "i", "s" }),
 				}),
 
 				formatting = {
