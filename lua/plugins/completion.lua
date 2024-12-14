@@ -51,9 +51,6 @@ return {
 			lspconfig.tailwindcss.setup({
 				capabilities = capabilities,
 			})
-			lspconfig.intelephense.setup({
-				capabilities = capabilities,
-			})
 			lspconfig.sqls.setup({
 				capabilities = capabilities,
 			})
