@@ -10,6 +10,12 @@ return {
       -- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
       -- See the full "keymap" documentation for information on defining your own keymap.
       keymap = { preset = 'default' },
+      completion = {
+        menu = { border = 'single' },
+        documentation = { window = { border = 'single' } },
+      },
+      signature = { window = { border = 'single' } },
+
 
       appearance = {
 
