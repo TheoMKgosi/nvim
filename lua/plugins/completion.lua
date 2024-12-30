@@ -9,6 +9,7 @@ return {
       "jcha0713/cmp-tw2css",
       "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
+      "rafamadriz/friendly-snippets",
     },
 
     opts = function(_, opts)
@@ -23,12 +24,15 @@ return {
       local cmp = require("cmp")
       local luasnip = require("luasnip")
 
+      require("luasnip.loaders.from_vscode").lazy_load()
+
       cmp.setup({
         snippet = {
           expand = function(args)
             require("luasnip").lsp_expand(args.body) -- For `luasnip` users
           end,
         },
+      
 
         window = {
           completion = cmp.config.window.bordered(),
@@ -70,13 +74,5 @@ return {
         }),
       })
     end,
-  },
-
-  -- LuaSnip snippet collection
-  {
-    "rafamadriz/friendly-snippets",
-    config = function()
-      require("luasnip.loaders.from_vscode").lazy_load()
-    end
   },
 }

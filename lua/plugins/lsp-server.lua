@@ -20,51 +20,15 @@ return {
       local on_attach = require("config.lsp").on_attach
       local lspconfig = require("lspconfig")
 
-      -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-      lspconfig.lua_ls.setup({
-        capabilities = capabilities,
-        on_attach = on_attach
-      })
-      lspconfig.ts_ls.setup({
-        capabilities = capabilities,
-        on_attach = on_attach
-      })
-      lspconfig.dartls.setup({
-        capabilities = capabilities,
-        on_attach = on_attach
-      })
-      lspconfig.gopls.setup({
-        capabilities = capabilities,
-        on_attach = on_attach
-      })
-      lspconfig.tailwindcss.setup({
-        capabilities = capabilities,
-        on_attach = on_attach
-      })
-      lspconfig.sqls.setup({
-        capabilities = capabilities,
-        on_attach = on_attach
-      })
-      lspconfig.marksman.setup({
-        capabilities = capabilities,
-        on_attach = on_attach
-      })
-      lspconfig.clangd.setup({
-        capabilities = capabilities,
-        on_attach = on_attach
-      })
-      lspconfig.html.setup({
-        capabilities = capabilities,
-        on_attach = on_attach
-      })
-      lspconfig.cssls.setup({
-        capabilities = capabilities,
-        on_attach = on_attach
-      })
-      lspconfig.dartls.setup({
-        capabilities = capabilities,
-        on_attach = on_attach
-      })
+      local servers = { "lua_ls", "ts_ls", "gopls", "dartls", "tailwindcss", "sqls", "marksman", "clangd", "html",
+        "cssls" }
+
+      for _, server in pairs(servers) do
+        lspconfig[server].setup({
+          on_attach = on_attach,
+          capabilities = capabilities
+        })
+      end
 
       vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {})
       vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
