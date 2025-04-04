@@ -13,28 +13,28 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    dependencies = { "hrsh7th/cmp-nvim-lsp" },
-    config = function()
-      -- Set up lspconfig.
-      local capabilities = require('cmp_nvim_lsp').default_capabilities()
-      local on_attach = require("config.lsp").on_attach
-      local lspconfig = require("lspconfig")
+    dependencies = { "saghen/blink.cmp" },
 
-      local servers = { "lua_ls", "ts_ls", "gopls", "dartls", "tailwindcss", "sqls", "marksman", "clangd", "html",
-        "cssls" }
+    opts = {
+      servers = {
+        lua_ls = {},
+        ts_ls = {},
+        html = {}
+      }
+    },
 
-      for _, server in pairs(servers) do
-        lspconfig[server].setup({
-          on_attach = on_attach,
-          capabilities = capabilities
-        })
+    config = function(_, opts)
+      local lspconfig = require('lspconfig')
+      for server, config in pairs(opts.servers) do
+        config.capabilities = require('blink.cmp').get_lsp_capabilities(config.capabilities)
+        lspconfig[server].setup(config)
       end
-
       vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {})
       vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
       vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {})
       vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
-    end,
+    end
+
   },
 }
