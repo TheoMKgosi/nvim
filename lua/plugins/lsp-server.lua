@@ -19,7 +19,8 @@ return {
       servers = {
         lua_ls = {},
         ts_ls = {},
-        html = {}
+        html = {},
+        intelephense = {},
       }
     },
 
